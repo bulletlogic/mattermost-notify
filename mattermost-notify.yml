@@ -7,17 +7,17 @@ commands:
     description: Notify Mattermost when a job succeeds
     parameters:
       branches:
-        description: 'Branch to monitor'
+        description: "Branch to monitor"
         type: string
       suffix:
-        description: 'Notification message suffix'
+        description: "Notification message suffix"
         type: string
-        default: ''
+        default: ""
       reponame:
         type: string
-        default: '$CIRCLE_PROJECT_REPONAME'
+        default: "$CIRCLE_PROJECT_REPONAME"
       webhook:
-        description: 'Webhook URL'
+        description: "Webhook URL"
         type: string
     steps:
       - run:
@@ -62,17 +62,17 @@ commands:
     description: Notify Mattermost when a job fails
     parameters:
       branches:
-        description: 'Branch to monitor'
+        description: "Branch to monitor"
         type: string
       suffix:
-        description: 'Notification message suffix'
+        description: "Notification message suffix"
         type: string
-        default: ''
+        default: ""
       reponame:
         type: string
-        default: '$CIRCLE_PROJECT_REPONAME'
+        default: "$CIRCLE_PROJECT_REPONAME"
       webhook:
-        description: 'Webhook URL'
+        description: "Webhook URL"
         type: string
     steps:
       - run:
