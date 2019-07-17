@@ -31,7 +31,7 @@ commands:
                   {
                     "fallback": "A job has succeeded (branch '"$CIRCLE_BRANCH"')",
                     "text": ":white_check_mark: **A job has succeeded! More info at '"$CIRCLE_BUILD_URL"'** << parameters.suffix >>",
-                    "color": "#A71812",
+                    "color": "#42c88a",
                     "fields": [
                       {
                         "title": "Project",
@@ -86,7 +86,7 @@ commands:
                   {
                     "fallback": "A job has failed (branch '"$CIRCLE_BRANCH"')",
                     "text": ":warning: **A job has failed! More info at '"$CIRCLE_BUILD_URL"'** << parameters.suffix >>",
-                    "color": "#A71812",
+                    "color": "#ed5c5c",
                     "fields": [
                       {
                         "title": "Project",
