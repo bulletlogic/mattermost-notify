@@ -1,0 +1,115 @@
+# This code is licensed from CircleCI to the user under the MIT license. See
+# https://circleci.com/orbs/registry/licensing for details.
+version: 2.1
+description: Notify Mattermost when a job succeeds or fails
+commands:
+  notify_on_success:
+    description: Notify Mattermost when a job succeeds
+    parameters:
+      branches:
+        description: 'Branch to monitor'
+        type: string
+      suffix:
+        description: 'Notification message suffix'
+        type: string
+        default: ''
+      reponame:
+        type: string
+        default: '$CIRCLE_PROJECT_REPONAME'
+      webhook:
+        description: 'Webhook URL'
+        type: string
+    steps:
+      - run:
+          name: Notify Mattermost
+          when: on_success
+          command: >
+            curl -i -X POST \
+              -H 'Content-Type: application/json' \
+              -d '{
+                "attachments": [
+                  {
+                    "fallback": "A job has succeeded (branch '"$CIRCLE_BRANCH"')",
+                    "text": ":white_check_mark: **A job has succeeded! More info at '"$CIRCLE_BUILD_URL"'** << parameters.suffix >>",
+                    "color": "#A71812",
+                    "fields": [
+                      {
+                        "title": "Project",
+                        "value": "## '"<< parameters.reponame >>"'",
+                        "short": true
+                      },
+                      {
+                        "title": "Branch",
+                        "value": "## ['"$CIRCLE_BRANCH"']('"$CIRCLE_BUILD_URL"')",
+                        "short": true
+                      },
+                      {
+                        "title": "Job",
+                        "value": "['"$CIRCLE_JOB"']('"$CIRCLE_BUILD_URL"')",
+                        "short": true
+                      },
+                      {
+                        "title": "Build",
+                        "value": "[#'"$CIRCLE_BUILD_NUM"']('"$CIRCLE_BUILD_URL"')",
+                        "short": true
+                      }
+                    ]
+                  }
+                ]
+              }' \
+              << parameters.webhook >>
+  notify_on_failure:
+    description: Notify Mattermost when a job fails
+    parameters:
+      branches:
+        description: 'Branch to monitor'
+        type: string
+      suffix:
+        description: 'Notification message suffix'
+        type: string
+        default: ''
+      reponame:
+        type: string
+        default: '$CIRCLE_PROJECT_REPONAME'
+      webhook:
+        description: 'Webhook URL'
+        type: string
+    steps:
+      - run:
+          name: Notify Mattermost
+          when: on_fail
+          command: >
+            curl -i -X POST \
+              -H 'Content-Type: application/json' \
+              -d '{
+                "attachments": [
+                  {
+                    "fallback": "A job has failed (branch '"$CIRCLE_BRANCH"')",
+                    "text": ":warning: **A job has failed! More info at '"$CIRCLE_BUILD_URL"'** << parameters.suffix >>",
+                    "color": "#A71812",
+                    "fields": [
+                      {
+                        "title": "Project",
+                        "value": "## '"<< parameters.reponame >>"'",
+                        "short": true
+                      },
+                      {
+                        "title": "Branch",
+                        "value": "## ['"$CIRCLE_BRANCH"']('"$CIRCLE_BUILD_URL"')",
+                        "short": true
+                      },
+                      {
+                        "title": "Job",
+                        "value": "['"$CIRCLE_JOB"']('"$CIRCLE_BUILD_URL"')",
+                        "short": true
+                      },
+                      {
+                        "title": "Build",
+                        "value": "[#'"$CIRCLE_BUILD_NUM"']('"$CIRCLE_BUILD_URL"')",
+                        "short": true
+                      }
+                    ]
+                  }
+                ]
+              }' \
+              << parameters.webhook >>
