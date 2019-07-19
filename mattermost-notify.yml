@@ -9,11 +9,13 @@ commands:
       branches:
         description: "Branch to monitor"
         type: string
+        default: "*"
       suffix:
         description: "Notification message suffix"
         type: string
         default: ""
       reponame:
+        description: "Namespace/repository name"
         type: string
         default: "$CIRCLE_PROJECT_REPONAME"
       webhook:
@@ -47,11 +49,13 @@ commands:
       branches:
         description: "Branch to monitor"
         type: string
+        default: "*"
       suffix:
         description: "Notification message suffix"
         type: string
         default: ""
       reponame:
+        description: "Namespace/repository name"
         type: string
         default: "$CIRCLE_PROJECT_REPONAME"
       webhook:
