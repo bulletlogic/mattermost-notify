@@ -35,30 +35,8 @@ commands:
                 "attachments": [
                   {
                     "fallback": "A job has succeeded (branch '"$CIRCLE_BRANCH"')",
-                    "text": ":white_check_mark: **A job has succeeded! More info at '"$CIRCLE_BUILD_URL"'** << parameters.suffix >>",
-                    "color": "#42c88a",
-                    "fields": [
-                      {
-                        "title": "Project",
-                        "value": "## '"<< parameters.reponame >>"'",
-                        "short": true
-                      },
-                      {
-                        "title": "Branch",
-                        "value": "## ['"$CIRCLE_BRANCH"']('"$CIRCLE_BUILD_URL"')",
-                        "short": true
-                      },
-                      {
-                        "title": "Job",
-                        "value": "['"$CIRCLE_JOB"']('"$CIRCLE_BUILD_URL"')",
-                        "short": true
-                      },
-                      {
-                        "title": "Build",
-                        "value": "[#'"$CIRCLE_BUILD_NUM"']('"$CIRCLE_BUILD_URL"')",
-                        "short": true
-                      }
-                    ]
+                    "text": ":white_check_mark: '"<< parameters.reponame >>"' '"$CIRCLE_BRANCH"' build '"$CIRCLE_BUILD_NUM"' has **succeeded**! More info at '"$CIRCLE_BUILD_URL"' << parameters.suffix >>",
+                    "color": "#42c88a"
                   }
                 ]
               }' \
@@ -95,30 +73,8 @@ commands:
                 "attachments": [
                   {
                     "fallback": "A job has failed (branch '"$CIRCLE_BRANCH"')",
-                    "text": ":warning: **A job has failed! More info at '"$CIRCLE_BUILD_URL"'** << parameters.suffix >>",
-                    "color": "#ed5c5c",
-                    "fields": [
-                      {
-                        "title": "Project",
-                        "value": "## '"<< parameters.reponame >>"'",
-                        "short": true
-                      },
-                      {
-                        "title": "Branch",
-                        "value": "## ['"$CIRCLE_BRANCH"']('"$CIRCLE_BUILD_URL"')",
-                        "short": true
-                      },
-                      {
-                        "title": "Job",
-                        "value": "['"$CIRCLE_JOB"']('"$CIRCLE_BUILD_URL"')",
-                        "short": true
-                      },
-                      {
-                        "title": "Build",
-                        "value": "[#'"$CIRCLE_BUILD_NUM"']('"$CIRCLE_BUILD_URL"')",
-                        "short": true
-                      }
-                    ]
+                    "text": ":warning: '"<< parameters.reponame >>"' '"$CIRCLE_BRANCH"' build '"$CIRCLE_BUILD_NUM"' has **failed**! More info at '"$CIRCLE_BUILD_URL"' << parameters.suffix >>",
+                    "color": "#ed5c5c"
                   }
                 ]
               }' \
