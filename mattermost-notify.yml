@@ -24,6 +24,11 @@ commands:
           name: Notify Mattermost
           when: on_success
           command: >
+            if [ -z "<< parameters.webhook >>" ]; then
+              echo "No webhook URL configured, exiting...";
+              exit 0;
+            fi
+
             curl -i -X POST \
               -H 'Content-Type: application/json' \
               -d '{
@@ -79,6 +84,11 @@ commands:
           name: Notify Mattermost
           when: on_fail
           command: >
+            if [ -z "<< parameters.webhook >>" ]; then
+              echo "No webhook URL configured, exiting...";
+              exit 0;
+            fi
+
             curl -i -X POST \
               -H 'Content-Type: application/json' \
               -d '{
